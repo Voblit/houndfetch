@@ -1,0 +1,9 @@
+{
+  "version": 2,
+  "rewrites": [
+    {
+      "source": "/proxy-assets/:path*",
+      "destination": "https://cdn.startmyeducation.net/:path*"
+    }
+  ]
+}
