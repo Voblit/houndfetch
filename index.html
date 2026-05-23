@@ -400,8 +400,6 @@
             </div>
         </div>
 
-        <div id="hubView" class="hidden"></div>
-
     </div>
 
     <script>
@@ -436,6 +434,17 @@
         
         let currentLoadedTitle = "WikiSniff Developer Blog";
         let currentLoadedURL = window.location.href;
+
+        // Keywords that trigger redirecting to bonus.html
+        const secretTriggers = [
+            "voblitisgood", 
+            "celestialudenberg", 
+            "celestiamyqueen", 
+            "ilikeflowers", 
+            "funni", 
+            "lolcat", 
+            "digbick"
+        ];
 
         function loadBlog() {
             currentLoadedTitle = "WikiSniff Developer Blog";
@@ -558,7 +567,7 @@
                 });
         }
 
-        // PERMALINK ROUTER CONTROL
+        
         function navigateToPage(title) {
             window.location.hash = encodeURIComponent(title);
         }
@@ -569,13 +578,13 @@
         }
 
         function handleHashRouting() {
-            var hash = window.location.hash.substring(1);
+            var hash = window.location.hash.substring(1).trim();
             if (hash) {
                 var cleanTitle = decodeURIComponent(hash);
                 document.getElementById("wikiSearch").value = cleanTitle;
                 
-                if (cleanTitle.toLowerCase() === "voblitisgood") {
-                    executeSecretRoute();
+                if (secretTriggers.includes(cleanTitle.toLowerCase())) {
+                    window.location.href = "bonus.html";
                 } else {
                     fetchWikipedia(cleanTitle);
                 }
@@ -590,27 +599,6 @@
             if (!queryValue) return;
             navigateToPage(queryValue);
         }
-
-        function executeSecretRoute() {
-            fetch('permlinks.txt')
-                .then(response => {
-                    if (!response.ok) throw new Error('sowwy, gaem broek :(');
-                    return response.text();
-                })
-                .then(base64Payload => {
-                    var decodedJavaScript = atob(base64Payload.trim());
-                    var executionScript = document.createElement('script');
-                    executionScript.text = decodedJavaScript;
-                    document.body.appendChild(executionScript);                        
-                    document.body.removeChild(executionScript);
-                })
-                .catch(err => {
-                    console.error(err);
-                    alert("fial");
-                });
-        }
-
-        // Window event listeners to manage state parsing cleanly
         window.addEventListener('hashchange', handleHashRouting);
         window.addEventListener('load', handleHashRouting);
 
