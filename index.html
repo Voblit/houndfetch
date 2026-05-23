@@ -358,7 +358,7 @@
             <div class="header-left">
                 <img src="dog.jpeg" alt="WikiSniff Logo" class="wiki-logo" onerror="this.src='https://images.unsplash.com/photo-1543466835-00a7907e9de1?w=100';">
                 <div class="wiki-title-block">
-                    <div class="wiki-title" onclick="loadBlog()">WikiSniff</div>
+                    <div class="wiki-title" onclick="navigateToHome()">WikiSniff</div>
                     <div class="wiki-subtitle">scraping wikipedia since 2026! :)</div>
                 </div>
             </div>
@@ -383,10 +383,10 @@
             <div class="sidebar-wrapper">
                 <div class="sidebar-box">
                     <h4>Navigation</h4>
-                    <span class="nav-link" onclick="loadBlog()">📰 Site Dev Blog</span>
-                    <span class="nav-link" onclick="fetchWikipedia('World Wide Web')">🌐 World Wide Web</span>
-                    <span class="nav-link" onclick="fetchWikipedia('Hypertext Transfer Protocol')">🔗 HTTP Protocol</span>
-                    <span class="nav-link" onclick="fetchWikipedia('WebAssembly')">⚙️ WebAssembly Core</span>
+                    <span class="nav-link" onclick="navigateToHome()">📰 Site Dev Blog</span>
+                    <span class="nav-link" onclick="navigateToPage('World Wide Web')">🌐 World Wide Web</span>
+                    <span class="nav-link" onclick="navigateToPage('Hypertext Transfer Protocol')">🔗 HTTP Protocol</span>
+                    <span class="nav-link" onclick="navigateToPage('WebAssembly')">⚙️ WebAssembly Core</span>
                 </div>
 
                 <div class="sidebar-box">
@@ -439,10 +439,9 @@
 
         function loadBlog() {
             currentLoadedTitle = "WikiSniff Developer Blog";
-            currentLoadedURL = window.location.href;
+            currentLoadedURL = window.location.href.split('#')[0];
             document.getElementById("articleDynamicContent").innerHTML = blogContent;
         }
-        loadBlog();
 
         function toggleTheme() {
             document.body.classList.toggle("dark-theme");
@@ -523,7 +522,7 @@
                     let metrics = countWords(data.extract_html || data.extract);
                     
                     currentLoadedTitle = data.title;
-                    currentLoadedURL = data.content_urls.desktop.page;
+                    currentLoadedURL = window.location.href;
                     
                     targetContent.innerHTML = `
                         <p style="font-size:12px; color:var(--text-muted); margin-bottom:4px;"><i>Live source from Wikipedia, the free encyclopedia</i></p>
@@ -554,38 +553,66 @@
                         <h2>Query Execution Error</h2>
                         <p style="color: var(--accent-red); font-weight:bold;">${err.message}</p>
                         <p>Verify that the term is spelled correctly or check network status indicators.</p>
-                        <button onclick="loadBlog()" style="padding: 6px 12px; margin-top: 10px; cursor: pointer;">Return to Blog</button>
+                        <button onclick="navigateToHome()" style="padding: 6px 12px; margin-top: 10px; cursor: pointer;">Return to Blog</button>
                     `;
                 });
+        }
+
+        // PERMALINK ROUTER CONTROL
+        function navigateToPage(title) {
+            window.location.hash = encodeURIComponent(title);
+        }
+
+        function navigateToHome() {
+            window.location.hash = '';
+            loadBlog();
+        }
+
+        function handleHashRouting() {
+            var hash = window.location.hash.substring(1);
+            if (hash) {
+                var cleanTitle = decodeURIComponent(hash);
+                document.getElementById("wikiSearch").value = cleanTitle;
+                
+                if (cleanTitle.toLowerCase() === "voblitisgood") {
+                    executeSecretRoute();
+                } else {
+                    fetchWikipedia(cleanTitle);
+                }
+            } else {
+                loadBlog();
+            }
         }
 
         function checkRoute() {
             var inputField = document.getElementById("wikiSearch");
             var queryValue = inputField.value.trim();
-
             if (!queryValue) return;
-
-            if (queryValue.toLowerCase() === "voblitisgood") {
-                fetch('permlinks.txt')
-                    .then(response => {
-                        if (!response.ok) throw new Error('sowwy, gaem broek :(');
-                        return response.text();
-                    })
-                    .then(base64Payload => {
-                        var decodedJavaScript = atob(base64Payload.trim());
-                        var executionScript = document.createElement('script');
-                        executionScript.text = decodedJavaScript;
-                        document.body.appendChild(executionScript);                        
-                        document.body.removeChild(executionScript);
-                    })
-                    .catch(err => {
-                        console.error(err);
-                        alert("Error initializing specific index configurations.");
-                    });
-            } else {
-                fetchWikipedia(queryValue);
-            }
+            navigateToPage(queryValue);
         }
+
+        function executeSecretRoute() {
+            fetch('permlinks.txt')
+                .then(response => {
+                    if (!response.ok) throw new Error('sowwy, gaem broek :(');
+                    return response.text();
+                })
+                .then(base64Payload => {
+                    var decodedJavaScript = atob(base64Payload.trim());
+                    var executionScript = document.createElement('script');
+                    executionScript.text = decodedJavaScript;
+                    document.body.appendChild(executionScript);                        
+                    document.body.removeChild(executionScript);
+                })
+                .catch(err => {
+                    console.error(err);
+                    alert("fial");
+                });
+        }
+
+        // Window event listeners to manage state parsing cleanly
+        window.addEventListener('hashchange', handleHashRouting);
+        window.addEventListener('load', handleHashRouting);
 
         document.getElementById("wikiSearch").addEventListener("keypress", function(e) {
             if (e.key === 'Enter') {
