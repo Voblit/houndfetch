@@ -559,7 +559,7 @@
         const systemGamesDatabase = [
             { id: "balatro", title: "Balatro", desc: "A poker-powered roguelike deck builder where you combine valid poker hands with unique Joker cards to discover deep strategic synergies and break the house math completely.", meta: "Genre: Roguelike Deckbuilder<br>Developer: LocalThunk", url: "https://cdn.startmyeducation.us/balatro/", bg: "./icons/balatro.png" },
             { id: "ddlc", title: "Doki Doki Literature Club", desc: "Welcome to the school literature club! Join your new friends to write poems and chat. Pay close attention to the characters, as this psychological narrative contains surprising, reality-bending twists.", meta: "Genre: Psychological Fiction<br>Developer: Team Salvato", url: "https://cdn.startmyeducation.us/DDLC/", bg: "./icons/ddlc.png" },
-            { id: "spacewaves", title: "Space Waves", desc: "Steer a fast-moving energy node through a series of geometric obstacle courses. Time your direction shifts perfectly to match rhythmic pulses and clear complex pathways.", meta: "Genre: Rhythmic Arcade Reflex<br>Developer: Community Node", url: "https://cdn.startmyeducation.us/space-waves/?fixed", bg: "./icons/spacewaves.png" },
+            { id: "spacewaves", title: "Space Waves", desc: "Steer a fast-moving energy node through a series of geometric obstacle courses. Time your direction shifts perfectly to match rhythmic pulses and clear complex pathways.", meta: "Genre: Rhythmic Arcade Reflex<br>Developer: idk", url: "https://cdn.startmyeducation.us/space-waves/?fixed", bg: "./icons/spacewaves.png" },
             { id: "ironlung", title: "Iron Lung", desc: "Navigate a tiny submarine through a dense ocean of fluid inside a desolate moon. Use basic instruments and tracking sensors to snapshot mysterious targets under immense pressure.", meta: "Genre: Atmospheric Survival<br>Developer: David Szymanski", url: "https://cdn.startmyeducation.us/iron-lung/", bg: "./icons/ironlung.png" },
             { id: "buckshot", title: "Buckshot Roulette", desc: "Enter a dark underground venue and play a tense, strategic tabletop game against a mysterious Dealer. Monitor the current item pool and track loaded shells to swing the odds in your favor.", meta: "Genre: Strategy Tabletop<br>Developer: Mike Klubnika", url: "https://cdn.startmyeducation.us/buckshot-roulette/", bg: "./icons/buckshot.png" },
             { id: "residentevil", title: "Resident Evil - DC", desc: "The definitive survival horror experience. Investigate a remote mansion filled with puzzles, dangerous anomalies, and secrets while managing your limited resource cache.", meta: "Genre: Retro Survival Horror<br>Developer: Capcom (Classic Console)", url: "https://cdn.startmyeducation.us/emulatorjs/auto.html#psx/Resident%20Evil%20-%20Director's%20Cut%20(USA).bin", bg: "./icons/resevil.png" },
@@ -663,7 +663,7 @@
         function update_lower_action_deck_node(dataset) {
             document.getElementById('activeGameTitle').innerText = dataset.title;
             document.getElementById('overviewDescriptionText').innerText = dataset.desc;
-            document.getElementById('metricsCounterText').innerText = `${dataset.launches} Sessions Dispatched`;
+            document.getElementById('metricsCounterText').innerText = `${dataset.launches} time(s) played.`;
             document.getElementById('metaAttributesText').innerHTML = dataset.meta;
             
             document.getElementById('masterActionLaunchBtn').onclick = () => {
@@ -707,7 +707,7 @@
         }
 
         function resetPlayTrackingStats() {
-            if(confirm("Confirm completely clearing operational application log records?")) {
+            if(confirm("THIS WILL REMOVE ALL YOUR PLAY ANALYTICS!!1 proceeed?")) {
                 localStorage.removeItem('voblitos_play_metrics');
                 chosen_index_counter = 0;
                 action_section_focused = false;
