@@ -437,8 +437,8 @@
             <div class="ps-sys-icons">
                 <span onclick="toggleSettingsModal(true)">Config</span>
                 <div class="ps-profile-node">
-                    <div class="ps-avatar-box" id="avatarLetter">G</div>
-                    <span id="headerGamertag">Guest</span>
+                    <div class="ps-avatar-box" id="avatarLetter">V</div>
+                    <span id="headerGamertag">Voblit</span>
                 </div>
             </div>
             <div class="ps-clock-node" id="psClock">12:00 PM</div>
@@ -495,7 +495,7 @@
                             <strong>Username Change</strong>
                             <p style="font-size:0.8rem; color:rgba(255,255,255,0.5)">Updeat ur name</p>
                         </div>
-                        <input type="text" class="ps-input" id="gamertagInput" value="yourname" onchange="updateLocalProfileTag(this.value)">
+                        <input type="text" class="ps-input" id="gamertagInput" value="Voblit" onchange="updateLocalProfileTag(this.value)">
                     </div>
                     <div class="ps-setting-row" style="cursor:pointer;" onclick="resetPlayTrackingStats()">
                         <div>
@@ -547,7 +547,7 @@
     <div id="appViewportCanvas">
         <div class="viewport-dashboard-home-tray">
             <button tabindex="0" class="ps-home-btn" id="closeAppBtn" onclick="killActiveApplication()">
-                <span style="font-size: 1rem;">🏠</span>
+                <span style="font-size: 1rem;">🏠</span> Home
             </button>
         </div>
         <iframe id="gameRunnerFrame" class="game-runner-frame" allow="fullscreen; autoplay"></iframe>
@@ -606,12 +606,12 @@
                 squareTile.dataset.launches = metrics[game.id] || 0;
 
                 squareTile.innerHTML = `<div class="ps-tile-title-fallback">${game.title}</div>`;
-            
+                
                 squareTile.onclick = (event) => {
                     if (squareTile.classList.contains('focused-node')) {
                         fireSelectedGameLink();
                     } else {
-                        squareTile.focus();
+                        squareTile.focus(); 
                     }
                 };
 
@@ -619,6 +619,7 @@
 
                 if(index === 0) {
                     updateLowerActionDeckNode(squareTile.dataset);
+                    squareTile.classList.add('focused-node');
                 }
             });
         }
@@ -689,7 +690,6 @@
             }
         });
 
-
         document.body.addEventListener('click', (event) => {
             const target = event.target.closest('.ps-start-btn, .ps-sub-menu-item');
             if (target) {
@@ -751,7 +751,7 @@
             canvas.style.display = "none";
             buildOrbisHorizontalCarousel();
             setTimeout(() => {
-                const fallbackTile = document.querySelector('.ps-tile');
+                const fallbackTile = document.querySelector('.ps-tile.focused-node') || document.querySelector('.ps-tile');
                 if(fallbackTile) fallbackTile.focus();
             }, 50);
         }
