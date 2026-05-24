@@ -141,14 +141,15 @@
             background-position: center;
             background-size: cover;
             border: 3px solid transparent;
-            cursor: pointer;
+            /* Click disabled to prevent selection desyncs */
+            cursor: default; 
             box-shadow: var(--tile-shadow);
             flex-shrink: 0;
             transition: transform 0.15s ease, border-color 0.15s, box-shadow 0.15s;
             scroll-margin: 20px;
         }
 
-        .ps-tile:focus, .ps-tile.focused-node {
+        .ps-tile.focused-node {
             border-color: var(--ps-focus-border);
             box-shadow: 0 0 15px var(--ps-blue-glow), 0 15px 35px rgba(0,0,0,0.8);
             transform: translateY(-8px) scale(1.04);
@@ -215,7 +216,7 @@
             transition: all 0.15s;
         }
 
-        .ps-start-btn:focus, .ps-start-btn.focused-node {
+        .ps-start-btn.focused-node {
             background: #ffffff;
             color: #000000;
             border-color: #ffffff;
@@ -229,7 +230,7 @@
             border-radius: 50%;
             display: inline-block;
         }
-        .ps-start-btn:focus .button-icon-pulse, .ps-start-btn.focused-node .button-icon-pulse {
+        .ps-start-btn.focused-node .button-icon-pulse {
             background-color: #003791;
         }
 
@@ -249,7 +250,7 @@
             cursor: pointer;
             border-left: 3px solid transparent;
         }
-        .ps-sub-menu-item:focus, .ps-sub-menu-item.focused-node {
+        .ps-sub-menu-item.focused-node {
             color: #ffffff;
             border-left-color: var(--ps-blue-glow);
             background: rgba(255,255,255,0.05);
@@ -453,13 +454,13 @@
             
             <div class="ps-action-gate-split">
                 <div class="ps-primary-action-pane">
-                    <button class="ps-start-btn focused-node" id="masterActionLaunchBtn" tabindex="0">
+                    <button class="ps-start-btn focused-node" id="masterActionLaunchBtn" tabindex="-1">
                         <span class="button-icon-pulse"></span>
                         <span>begin!</span>
                     </button>
                     <div class="ps-sub-menu-list">
-                        <button class="ps-sub-menu-item" tabindex="0">Overview</button>
-                        <button class="ps-sub-menu-item" tabindex="0">Plays</button>
+                        <button class="ps-sub-menu-item" tabindex="-1">Overview</button>
+                        <button class="ps-sub-menu-item" tabindex="-1">Plays</button>
                     </div>
                 </div>
 
@@ -536,9 +537,11 @@
                 <span>WikiSniff games</span>
             </div>
             <div class="ps-prompts-cluster">
-                <span><span class="ps-glyph-btn">X</span> Enter</span>
-                <span><span class="ps-glyph-btn">O</span> Back</span>
-                <span><span class="ps-glyph-btn">◀</span> Scroll Track Navigation</span>
+                <span><span class="ps-glyph-btn">◀</span><span class="ps-glyph-btn">▶</span> Arrow Keys: Navigate Track</span>
+                <span><span class="ps-glyph-btn">▲</span> Move to Panel</span>
+                <span><span class="ps-glyph-btn">▼</span> Back to Track</span>
+                <span><span class="ps-glyph-btn">X</span> Enter: Launch</span>
+                <span><span class="ps-glyph-btn">O</span> Escape: Exit Game</span>
             </div>
         </footer>
 
@@ -546,7 +549,7 @@
 
     <div id="appViewportCanvas">
         <div class="viewport-dashboard-home-tray">
-            <button tabindex="0" class="ps-home-btn" id="closeAppBtn" onclick="killActiveApplication()">
+            <button class="ps-home-btn" id="closeAppBtn" onclick="killActiveApplication()">
                 <span style="font-size: 1rem;">🏠</span> Home
             </button>
         </div>
@@ -570,7 +573,7 @@
             { id: "drivemad", title: "Drive Mad", url: "https://cdn.startmyeducation.us/drivemad/", desc: "A physics-based driving game where you maneuver custom off-road trucks across creative hazard tracks filled with ramps, loops, and fragile bridges.", meta: "Genre: Driving Physics Stunt<br>Developer: Martin Magni", bg: "./icons/drivemad.png" },
             { id: "halflife", title: "Half-Life", url: "https://cdn.startmyeducation.us/half-life/", desc: "The legendary sci-fi shooter. Survive an anomaly containment breach inside a remote research facility using smart environmental puzzle-solving and defense strategies.", meta: "Genre: First-Person Sci-Fi Shooter<br>Developer: Valve Corporation", bg: "./icons/halflife.png" },
             { id: "gdlite", title: "Geometry Dash Lite", url: "https://cdn.startmyeducation.us/gdlite/", desc: "Jump, fly, and flip your way through dangerous spike grids. Time your actions carefully to match the fast rhythm tracks in this intense platformer.", meta: "Genre: Rhythm Platformer Rythmic<br>Developer: RobTop Games", bg: "./icons/gdlite.png" },
-            { id: "undertale", title: "Undertale", url: "https://cdn.startmyeducation.us/undertale/play.html", desc: "A unique roleplaying game where you navigate an underground realm of monsters. Use creative negotiation systems to resolve encounters without relying on combat.", meta: "Genre: Narratively Rich RPG<br>Developer: Toby Fox", bg: "./icons/undertale.png" },
+            { id: "undertale", title: "Undertext", url: "https://cdn.startmyeducation.us/undertale/play.html", desc: "A unique roleplaying game where you navigate an underground realm of monsters. Use creative negotiation systems to resolve encounters without relying on combat.", meta: "Genre: Narratively Rich RPG<br>Developer: Toby Fox", bg: "./icons/undertale.png" },
             { id: "granny", title: "Granny", url: "https://cdn.startmyeducation.us/granny/", desc: "A tense first-person horror escape game. Search a quiet, locked house for keys and tools while moving carefully to avoid alerting your pursuer.", meta: "Genre: First-Person Stealth Horror<br>Developer: DVloper", bg: "./icons/granny.png" },
             { id: "baldi", title: "Baldi's Basics", url: "https://cdn.startmyeducation.us/baldi/", desc: "A meta horror game disguised as a 90s educational edutainment title. Collect notebooks while solving math problems and avoiding the quick-stepping Baldi.", meta: "Genre: Survival Horror / Edutainment<br>Developer: Basically Games", bg: "./icons/baldi.png" },
             { id: "subwaysurfers", title: "Subway Surfers", url: "https://cdn.startmyeducation.us/surfers/", desc: "Dash and dodge oncoming trains as fast as you can. Help Jake, Tricky & Fresh escape from the grumpy Inspector and his dog in this endless runner classic.", meta: "Genre: Endless Arcade Runner<br>Developer: Kiloo / SYBO Games", bg: "./icons/surfers.png" },
@@ -582,92 +585,116 @@
             { id: "bendy", title: "Bendy and the Ink Machine", url: "https://cdn.startmyeducation.us/bendy/", desc: "Revisit the abandoned animation studio of Joey Drew Studios. Navigate shadows, solve puzzles, and escape ink monsters in this first-person survival horror nightmare.", meta: "Genre: Episodic Survival Horror<br>Developer: Kindly Beast", bg: "./icons/bendy.png" }
         ];
 
-        let currentlyFocusedGame = null;
-        let selectedTileElement = null;
+        let chosen_index_counter = 0;
+        let action_section_focused = false;
+        let alternate_panel_index = 0;
 
-        function buildOrbisHorizontalCarousel() {
-            let metrics = JSON.parse(localStorage.getItem('voblitos_play_metrics')) || {};
-            systemGamesDatabase.forEach(g => { if(!metrics[g.id]) metrics[g.id] = 0; });
-
-            let sortedCollection = [...systemGamesDatabase].sort((x, y) => metrics[y.id] - metrics[x.id]);
-            const track = document.getElementById('mainCarouselTrack');
-            const cachedSelectedId = selectedTileElement ? selectedTileElement.dataset.id : null;
-            track.innerHTML = '';
-
-            sortedCollection.forEach((game, index) => {
-                const squareTile = document.createElement('div');
-                squareTile.className = 'ps-tile';
-                squareTile.tabIndex = 0;
-                squareTile.style.backgroundImage = `url('${game.bg}')`;
-                
-                squareTile.dataset.id = game.id;
-                squareTile.dataset.title = game.title;
-                squareTile.dataset.url = game.url;
-                squareTile.dataset.desc = game.desc;
-                squareTile.dataset.meta = game.meta;
-                squareTile.dataset.launches = metrics[game.id] || 0;
-
-                squareTile.innerHTML = `<div class="ps-tile-title-fallback">${game.title}</div>`;
-                
-                squareTile.onclick = (e) => {
-                    e.stopPropagation();
-                    selectAndHighlightTile(squareTile);
-                    fireSelectedGameLink();
-                };
-
-                track.appendChild(squareTile);
-
-                if ((cachedSelectedId && game.id === cachedSelectedId) || (!cachedSelectedId && index === 0)) {
-                    selectedTileElement = squareTile;
-                }
+        function build_orbis_horizontal_carousel() {
+            let initial_metrics_raw = localStorage.getItem('voblitos_play_metrics');
+            let initial_metrics_raw_but_parsed = JSON.parse(initial_metrics_raw) || {};
+            let current_metrics = initial_metrics_raw_but_parsed;
+            
+            systemGamesDatabase.forEach(g => { 
+                if(!current_metrics[g.id]) current_metrics[g.id] = 0; 
             });
 
-            if (selectedTileElement) {
-                clearAllGlowHighlights();
-                updateLowerActionDeckNode(selectedTileElement.dataset);
-                selectedTileElement.classList.add('focused-node');
-            }
+            let sorted_collection_source = [...systemGamesDatabase];
+            let sorted_collection_source_but_arranged = sorted_collection_source.sort((x, y) => current_metrics[y.id] - current_metrics[x.id]);
+            let current_sorted_deck = sorted_collection_source_but_arranged;
+            
+            const track = document.getElementById('mainCarouselTrack');
+            track.innerHTML = '';
+
+            current_sorted_deck.forEach((game, index) => {
+                const square_tile = document.createElement('div');
+                square_tile.className = 'ps-tile';
+                square_tile.style.backgroundImage = `url('${game.bg}')`;
+                
+                square_tile.dataset.id = game.id;
+                square_tile.dataset.title = game.title;
+                square_tile.dataset.url = game.url;
+                square_tile.dataset.desc = game.desc;
+                square_tile.dataset.meta = game.meta;
+                square_tile.dataset.launches = current_metrics[game.id] || 0;
+
+                square_tile.innerHTML = `<div class="ps-tile-title-fallback">${game.title}</div>`;
+                track.appendChild(square_tile);
+            });
+
+            render_active_glow_state();
         }
 
-        function clearAllGlowHighlights() {
+        function clear_all_glow_highlights() {
             document.querySelectorAll('.ps-tile, .ps-start-btn, .ps-sub-menu-item').forEach(el => el.classList.remove('focused-node'));
         }
 
-        function selectAndHighlightTile(tileElement) {
-            clearAllGlowHighlights();
+        function render_active_glow_state() {
+            clear_all_glow_highlights();
             
-            selectedTileElement = tileElement;
-            tileElement.classList.add('focused-node');
-            
-            updateLowerActionDeckNode(tileElement.dataset);
+            const tiles = document.querySelectorAll('.ps-tile');
+            if (tiles.length === 0) return;
 
-            tileElement.scrollIntoView({
-                behavior: 'smooth',
-                block: 'nearest',
-                inline: 'center'
-            });
+            if (chosen_index_counter < 0) chosen_index_counter = 0;
+            if (chosen_index_counter >= tiles.length) chosen_index_counter = tiles.length - 1;
+
+            let specific_tile_element = tiles[chosen_index_counter];
+            
+            if (!action_section_focused) {
+                specific_tile_element.classList.add('focused-node');
+                update_lower_action_deck_node(specific_tile_element.dataset);
+
+                specific_tile_element.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'nearest',
+                    inline: 'center'
+                });
+            } else {
+                specific_tile_element.classList.add('focused-node'); 
+                
+                const control_nodes_pool = [
+                    document.getElementById('masterActionLaunchBtn'),
+                    ...document.querySelectorAll('.ps-sub-menu-item')
+                ];
+                
+                if (alternate_panel_index < 0) alternate_panel_index = 0;
+                if (alternate_panel_index >= control_nodes_pool.length) alternate_panel_index = control_nodes_pool.length - 1;
+                
+                control_nodes_pool[alternate_panel_index].classList.add('focused-node');
+            }
         }
 
-        function updateLowerActionDeckNode(dataset) {
-            currentlyFocusedGame = dataset;
+        function update_lower_action_deck_node(dataset) {
             document.getElementById('activeGameTitle').innerText = dataset.title;
             document.getElementById('overviewDescriptionText').innerText = dataset.desc;
             document.getElementById('metricsCounterText').innerText = `${dataset.launches} Sessions Dispatched`;
             document.getElementById('metaAttributesText').innerHTML = dataset.meta;
             
             document.getElementById('masterActionLaunchBtn').onclick = () => {
-                let metrics = JSON.parse(localStorage.getItem('voblitos_play_metrics')) || {};
-                metrics[dataset.id] = (parseInt(metrics[dataset.id]) || 0) + 1;
-                localStorage.setItem('voblitos_play_metrics', JSON.stringify(metrics));
+                let initial_metric_data = localStorage.getItem('voblitos_play_metrics');
+                let initial_metric_data_but_parsed = JSON.parse(initial_metric_data) || {};
+                let current_metrics_bag = initial_metric_data_but_parsed;
                 
-                buildOrbisHorizontalCarousel();
-                bootApplication(dataset.url);
+                current_metrics_bag[dataset.id] = (parseInt(current_metrics_bag[dataset.id]) || 0) + 1;
+                localStorage.setItem('voblitos_play_metrics', JSON.stringify(current_metrics_bag));
+                
+                build_orbis_horizontal_carousel();
+                boot_application_reponse(dataset.url);
             };
         }
 
-        function fireSelectedGameLink() {
-            if(currentlyFocusedGame) {
-                document.getElementById('masterActionLaunchBtn').click();
+        function fire_selected_game_link() {
+            const tiles = document.querySelectorAll('.ps-tile');
+            if (tiles[chosen_index_counter]) {
+                let initial_metric_data = localStorage.getItem('voblitos_play_metrics');
+                let initial_metric_data_but_parsed = JSON.parse(initial_metric_data) || {};
+                let current_metrics_bag = initial_metric_data_but_parsed;
+                
+                let game_id = tiles[chosen_index_counter].dataset.id;
+                current_metrics_bag[game_id] = (parseInt(current_metrics_bag[game_id]) || 0) + 1;
+                localStorage.setItem('voblitos_play_metrics', JSON.stringify(current_metrics_bag));
+                
+                build_orbis_horizontal_carousel();
+                boot_application_reponse(tiles[chosen_index_counter].dataset.url);
             }
         }
 
@@ -678,18 +705,16 @@
                 document.getElementById('gamertagInput').focus();
             } else {
                 modal.classList.remove('modal-active');
-                if(selectedTileElement) {
-                    selectedTileElement.focus();
-                    selectAndHighlightTile(selectedTileElement);
-                }
+                render_active_glow_state();
             }
         }
 
         function resetPlayTrackingStats() {
             if(confirm("Confirm completely clearing operational application log records?")) {
                 localStorage.removeItem('voblitos_play_metrics');
-                selectedTileElement = null;
-                buildOrbisHorizontalCarousel();
+                chosen_index_counter = 0;
+                action_section_focused = false;
+                build_orbis_horizontal_carousel();
                 toggleSettingsModal(false);
             }
         }
@@ -703,99 +728,86 @@
             localStorage.setItem('voblitos_gamertag', val);
         }
 
-        document.body.addEventListener('focusin', (event) => {
-            if (event.target && event.target.classList.contains('ps-tile')) {
-                clearAllGlowHighlights();
-                event.target.classList.add('focused-node');
-                selectedTileElement = event.target;
-                updateLowerActionDeckNode(event.target.dataset);
-                
-                event.target.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'nearest',
-                    inline: 'center'
-                });
-            } else if (event.target && (event.target.classList.contains('ps-start-btn') || event.target.classList.contains('ps-sub-menu-item'))) {
-                clearAllGlowHighlights();
-                event.target.classList.add('focused-node');
-            }
-        });
-
-        document.addEventListener('mouseover', (event) => {
-            const target = event.target.closest('.ps-tile');
-            if (target) {
-                clearAllGlowHighlights();
-                target.classList.add('focused-node');
-                selectedTileElement = target;
-                updateLowerActionDeckNode(target.dataset);
-            } else {
-                const actionTarget = event.target.closest('.ps-start-btn, .ps-sub-menu-item');
-                if (actionTarget) {
-                    clearAllGlowHighlights();
-                    actionTarget.classList.add('focused-node');
-                }
-            }
-        });
-
+        /* Keyboard input sniffer replaces standard cursor listeners completely */
         window.addEventListener('keydown', (e) => {
             if(document.activeElement && document.activeElement.tagName === 'INPUT') return;
 
-            const tiles = Array.from(document.querySelectorAll('.ps-tile'));
-            let currentTileIndex = selectedTileElement ? tiles.indexOf(selectedTileElement) : 0;
+            const tiles = document.querySelectorAll('.ps-tile');
 
             if (e.key === 'ArrowRight') {
-                if (currentTileIndex !== -1 && currentTileIndex < tiles.length - 1) {
-                    tiles[currentTileIndex + 1].focus();
-                    selectAndHighlightTile(tiles[currentTileIndex + 1]);
+                if (!action_section_focused) {
+                    if (chosen_index_counter < tiles.length - 1) {
+                        chosen_index_counter++;
+                        render_active_glow_state();
+                    }
                 }
                 e.preventDefault();
             }
             if (e.key === 'ArrowLeft') {
-                if (currentTileIndex > 0) {
-                    tiles[currentTileIndex - 1].focus();
-                    selectAndHighlightTile(tiles[currentTileIndex - 1]);
+                if (!action_section_focused) {
+                    if (chosen_index_counter > 0) {
+                        chosen_index_counter--;
+                        render_active_glow_state();
+                    }
+                }
+                e.preventDefault();
+            }
+            if (e.key === 'ArrowDown') {
+                if (!action_section_focused) {
+                    action_section_focused = true;
+                    alternate_panel_index = 0;
+                    render_active_glow_state();
+                } else {
+                    const control_nodes_pool = [
+                        document.getElementById('masterActionLaunchBtn'),
+                        ...document.querySelectorAll('.ps-sub-menu-item')
+                    ];
+                    if (alternate_panel_index < control_nodes_pool.length - 1) {
+                        alternate_panel_index++;
+                        render_active_glow_state();
+                    }
+                }
+                e.preventDefault();
+            }
+            if (e.key === 'ArrowUp') {
+                if (action_section_focused) {
+                    if (alternate_panel_index > 0) {
+                        alternate_panel_index--;
+                        render_active_glow_state();
+                    } else {
+                        action_section_focused = false;
+                        render_active_glow_state();
+                    }
                 }
                 e.preventDefault();
             }
             if (e.key === 'Enter') {
-                if (document.activeElement && (document.activeElement.classList.contains('ps-start-btn') || document.activeElement.classList.contains('ps-sub-menu-item'))) {
-                    document.activeElement.click();
+                if (action_section_focused) {
+                    if (alternate_panel_index === 0) {
+                        fire_selected_game_link();
+                    }
                 } else {
-                    fireSelectedGameLink();
-                }
-                e.preventDefault();
-            }
-            if(e.key === 'ArrowDown' && document.activeElement && document.activeElement.classList.contains('ps-tile')) {
-                document.getElementById('masterActionLaunchBtn').focus();
-                e.preventDefault();
-            }
-            if(e.key === 'ArrowUp' && document.activeElement && (document.activeElement.classList.contains('ps-start-btn') || document.activeElement.classList.contains('ps-sub-menu-item'))) {
-                if(selectedTileElement) {
-                    selectedTileElement.focus();
-                    selectAndHighlightTile(selectedTileElement);
+                    fire_selected_game_link();
                 }
                 e.preventDefault();
             }
         });
 
         window.addEventListener('DOMContentLoaded', () => {
-            buildOrbisHorizontalCarousel();
-            const cacheName = localStorage.getItem('voblitos_gamertag');
-            if(cacheName) {
-                document.getElementById('gamertagInput').value = cacheName;
-                updateLocalProfileTag(cacheName);
+            build_orbis_horizontal_carousel();
+            const cache_name_raw = localStorage.getItem('voblitos_gamertag');
+            if(cache_name_raw) {
+                document.getElementById('gamertagInput').value = cache_name_raw;
+                updateLocalProfileTag(cache_name_raw);
             }
-            if(selectedTileElement) {
-                selectedTileElement.focus();
-                selectAndHighlightTile(selectedTileElement);
-            }
+            render_active_glow_state();
         });
 
         const canvas = document.getElementById("appViewportCanvas");
         const frame = document.getElementById("gameRunnerFrame");
 
-        function bootApplication(uriTarget) {
-            frame.src = uriTarget;
+        function boot_application_reponse(uri_target) {
+            frame.src = uri_target;
             canvas.style.display = "block";
             document.getElementById('closeAppBtn').focus();
         }
@@ -803,18 +815,12 @@
         function killActiveApplication() {
             frame.src = "about:blank";
             canvas.style.display = "none";
-            buildOrbisHorizontalCarousel();
-            setTimeout(() => {
-                if(selectedTileElement) {
-                    selectedTileElement.focus();
-                    selectAndHighlightTile(selectedTileElement);
-                }
-            }, 50);
+            build_orbis_horizontal_carousel();
         }
 
         function updateClock() {
-            const timeData = new Date();
-            document.getElementById('psClock').innerText = timeData.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+            const time_data_object = new Date();
+            document.getElementById('psClock').innerText = time_data_object.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
         }
         setInterval(updateClock, 1000);
         updateClock();
