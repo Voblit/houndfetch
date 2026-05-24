@@ -383,7 +383,8 @@
         #appViewportCanvas {
             display: none;
             position: fixed;
-            top: 0; left: 0; width: 100vw; height: 100vh;
+            top: 0; left: 0; width: 100vw; height: 100vw;
+            height: 100vh;
             background: #000;
             z-index: 99999;
         }
@@ -569,12 +570,12 @@
             { id: "ragdollhit", title: "Ragdoll Hit", desc: "Engage in physics-driven, ragdoll combat. Time your punches, kicks, and environmental interactions to down your targets while keeping your own balance.", meta: "Genre: Physics Combat Sandbox<br>Developer: Experimental Play", url: "https://cdn.startmyeducation.us/RagdollHit/", bg: "./icons/ragdollh.png" },
             { id: "drivemad", title: "Drive Mad", url: "https://cdn.startmyeducation.us/drivemad/", desc: "A physics-based driving game where you maneuver custom off-road trucks across creative hazard tracks filled with ramps, loops, and fragile bridges.", meta: "Genre: Driving Physics Stunt<br>Developer: Martin Magni", bg: "./icons/drivemad.png" },
             { id: "halflife", title: "Half-Life", url: "https://cdn.startmyeducation.us/half-life/", desc: "The legendary sci-fi shooter. Survive an anomaly containment breach inside a remote research facility using smart environmental puzzle-solving and defense strategies.", meta: "Genre: First-Person Sci-Fi Shooter<br>Developer: Valve Corporation", bg: "./icons/halflife.png" },
-            { id: "gdlite", title: "Geometry Dash Lite", url: "https://cdn.startmyeducation.us/gdlite/", desc: "Jump, fly, and flip your way through dangerous spike grids. Time your actions carefully to match the fast rhythm tracks in this intense platformer.", meta: "Genre: Rhythm Platformer Rythmic<br>Developer: RobTop Games", url: "https://cdn.startmyeducation.us/gdlite/", bg: "./icons/gdlite.png" },
+            { id: "gdlite", title: "Geometry Dash Lite", url: "https://cdn.startmyeducation.us/gdlite/", desc: "Jump, fly, and flip your way through dangerous spike grids. Time your actions carefully to match the fast rhythm tracks in this intense platformer.", meta: "Genre: Rhythm Platformer Rythmic<br>Developer: RobTop Games", bg: "./icons/gdlite.png" },
             { id: "undertale", title: "Undertale", url: "https://cdn.startmyeducation.us/undertale/play.html", desc: "A unique roleplaying game where you navigate an underground realm of monsters. Use creative negotiation systems to resolve encounters without relying on combat.", meta: "Genre: Narratively Rich RPG<br>Developer: Toby Fox", bg: "./icons/undertale.png" },
             { id: "granny", title: "Granny", url: "https://cdn.startmyeducation.us/granny/", desc: "A tense first-person horror escape game. Search a quiet, locked house for keys and tools while moving carefully to avoid alerting your pursuer.", meta: "Genre: First-Person Stealth Horror<br>Developer: DVloper", bg: "./icons/granny.png" },
             { id: "baldi", title: "Baldi's Basics", url: "https://cdn.startmyeducation.us/baldi/", desc: "A meta horror game disguised as a 90s educational edutainment title. Collect notebooks while solving math problems and avoiding the quick-stepping Baldi.", meta: "Genre: Survival Horror / Edutainment<br>Developer: Basically Games", bg: "./icons/baldi.png" },
-            { id: "subwaysurfers", title: "Subway Surfers", url: "https://cdn.startmyeducation.us/surfers/", desc: "Dash and dodge oncoming trains as fast as you can. Help Jake, Tricky & Fresh escape from the grumpy Inspector and his dog in this endless runner classic.", meta: "Genre: Endless Arcade Runner<br>Developer: Kiloo / SYBO Games", url: "https://cdn.startmyeducation.us/surfers/", bg: "./icons/surfers.png" },
-            { id: "crossyroad", title: "Crossy Road", url: "https://cdn.startmyeducation.us/crossyroad/index.html?world=original", desc: "Why did the Chicken cross the road? Dodge traffic, hop across logs, and evade train tracks in an endless voxel-style hopping adventure.", meta: "Genre: Endless Arcade Hopper<br>Developer: Hipster Whale", url: "https://cdn.startmyeducation.us/crossyroad/index.html?world=original", bg: "./icons/crossyroad.png" },
+            { id: "subwaysurfers", title: "Subway Surfers", url: "https://cdn.startmyeducation.us/surfers/", desc: "Dash and dodge oncoming trains as fast as you can. Help Jake, Tricky & Fresh escape from the grumpy Inspector and his dog in this endless runner classic.", meta: "Genre: Endless Arcade Runner<br>Developer: Kiloo / SYBO Games", bg: "./icons/surfers.png" },
+            { id: "crossyroad", title: "Crossy Road", url: "https://cdn.startmyeducation.us/crossyroad/index.html?world=original", desc: "Why did the Chicken cross the road? Dodge traffic, hop across logs, and evade train tracks in an endless voxel-style hopping adventure.", meta: "Genre: Endless Arcade Hopper<br>Developer: Hipster Whale", bg: "./icons/crossyroad.png" },
             { id: "slopehd", title: "Slope HD", url: "https://cdn.startmyeducation.us/SlopeHD/", desc: "Drive a ball down an endless, steep neon downhill track. Avoid sudden drops, moving walls, and red barriers as your speed climbs dangerously high.", meta: "Genre: Physics Arcade Runner<br>Developer: Rob Kay", bg: "./icons/slope.png" },
             { id: "tetris", title: "Tetris", url: "https://cdn.startmyeducation.us/tetris/", desc: "The definitive arcade puzzle game. Rotate, move, and drop falling tetrominoes to clear horizontal rows and prevent your matrix from stacking to the top.", meta: "Genre: Tile-Matching Puzzle<br>Developer: Alexey Pajitnov", bg: "./icons/tetris.png" },
             { id: "mario64", title: "Super Mario 64", url: "https://cdn.startmyeducation.us/mario64/", desc: "The foundational 3D platformer. Explore Princess Peach's castle, jump through magical paintings, and collect Power Stars to defeat Bowser.", meta: "Genre: Classic 3D Platformer<br>Developer: Nintendo", bg: "./icons/mario64.png" },
@@ -591,6 +592,7 @@
 
             let sortedCollection = [...systemGamesDatabase].sort((x, y) => metrics[y.id] - metrics[x.id]);
             const track = document.getElementById('mainCarouselTrack');
+            const cachedSelectedId = selectedTileElement ? selectedTileElement.dataset.id : null;
             track.innerHTML = '';
 
             sortedCollection.forEach((game, index) => {
@@ -610,30 +612,28 @@
                 
                 squareTile.onclick = (e) => {
                     e.stopPropagation();
-                    
-                    if (selectedTileElement === squareTile) {
-                        fireSelectedGameLink();
-                    } else {
-                        selectAndHighlightTile(squareTile);
-                    }
+                    selectAndHighlightTile(squareTile);
+                    fireSelectedGameLink();
                 };
 
                 track.appendChild(squareTile);
 
-                if(index === 0) {
-                    updateLowerActionDeckNode(squareTile.dataset);
+                if ((cachedSelectedId && game.id === cachedSelectedId) || (!cachedSelectedId && index === 0)) {
                     selectedTileElement = squareTile;
-                    squareTile.classList.add('focused-node');
                 }
             });
+
+            if (selectedTileElement) {
+                updateLowerActionDeckNode(selectedTileElement.dataset);
+                selectedTileElement.classList.add('focused-node');
+            }
         }
 
         function selectAndHighlightTile(tileElement) {
-            document.querySelectorAll('.ps-tile, .ps-start-btn, .ps-sub-menu-item').forEach(el => el.classList.remove('focused-node'));
+            document.querySelectorAll('.ps-tile').forEach(el => el.classList.remove('focused-node'));
             
             selectedTileElement = tileElement;
             tileElement.classList.add('focused-node');
-            tileElement.focus();
             
             updateLowerActionDeckNode(tileElement.dataset);
 
@@ -681,6 +681,7 @@
         function resetPlayTrackingStats() {
             if(confirm("Confirm completely clearing operational application log records?")) {
                 localStorage.removeItem('voblitos_play_metrics');
+                selectedTileElement = null;
                 buildOrbisHorizontalCarousel();
                 toggleSettingsModal(false);
             }
@@ -707,18 +708,31 @@
                     block: 'nearest',
                     inline: 'center'
                 });
+            } else if (event.target && (event.target.classList.contains('ps-start-btn') || event.target.classList.contains('ps-sub-menu-item'))) {
+                document.querySelectorAll('.ps-start-btn, .ps-sub-menu-item').forEach(el => el.classList.remove('focused-node'));
+                event.target.classList.add('focused-node');
+                if (selectedTileElement) {
+                    selectedTileElement.classList.add('focused-node');
+                }
             }
         });
 
         document.addEventListener('mouseover', (event) => {
             const target = event.target.closest('.ps-tile');
-            if (target && selectedTileElement !== target) {
-                document.getElementById('activeGameTitle').innerText = target.dataset.title;
-                document.getElementById('overviewDescriptionText').innerText = target.dataset.desc;
-                document.getElementById('metricsCounterText').innerText = `${target.dataset.launches} Sessions Dispatched`;
-                document.getElementById('metaAttributesText').innerHTML = target.dataset.meta;
-            } else if (!target && selectedTileElement) {
-                updateLowerActionDeckNode(selectedTileElement.dataset);
+            if (target) {
+                document.querySelectorAll('.ps-tile, .ps-start-btn, .ps-sub-menu-item').forEach(el => el.classList.remove('focused-node'));
+                target.classList.add('focused-node');
+                selectedTileElement = target;
+                updateLowerActionDeckNode(target.dataset);
+            } else {
+                const actionTarget = event.target.closest('.ps-start-btn, .ps-sub-menu-item');
+                if (actionTarget) {
+                    document.querySelectorAll('.ps-start-btn, .ps-sub-menu-item').forEach(el => el.classList.remove('focused-node'));
+                    actionTarget.classList.add('focused-node');
+                    if (selectedTileElement) {
+                        selectedTileElement.classList.add('focused-node');
+                    }
+                }
             }
         });
 
@@ -726,26 +740,39 @@
             if(document.activeElement && document.activeElement.tagName === 'INPUT') return;
 
             const tiles = Array.from(document.querySelectorAll('.ps-tile'));
-            const currentIndex = tiles.indexOf(document.activeElement);
+            let currentTileIndex = selectedTileElement ? tiles.indexOf(selectedTileElement) : 0;
 
-            if (e.key === 'ArrowRight' && currentIndex !== -1 && currentIndex < tiles.length - 1) {
-                tiles[currentIndex + 1].focus();
+            if (e.key === 'ArrowRight') {
+                if (currentTileIndex !== -1 && currentTileIndex < tiles.length - 1) {
+                    tiles[currentTileIndex + 1].focus();
+                    selectAndHighlightTile(tiles[currentTileIndex + 1]);
+                }
                 e.preventDefault();
             }
-            if (e.key === 'ArrowLeft' && currentIndex > 0) {
-                tiles[currentIndex - 1].focus();
+            if (e.key === 'ArrowLeft') {
+                if (currentTileIndex > 0) {
+                    tiles[currentTileIndex - 1].focus();
+                    selectAndHighlightTile(tiles[currentTileIndex - 1]);
+                }
                 e.preventDefault();
             }
-            if (e.key === 'Enter' && currentIndex !== -1) {
-                fireSelectedGameLink();
+            if (e.key === 'Enter') {
+                if (document.activeElement && (document.activeElement.classList.contains('ps-start-btn') || document.activeElement.classList.contains('ps-sub-menu-item'))) {
+                    document.activeElement.click();
+                } else {
+                    fireSelectedGameLink();
+                }
                 e.preventDefault();
             }
-            if(e.key === 'ArrowDown' && document.activeElement.classList.contains('ps-tile')) {
+            if(e.key === 'ArrowDown' && document.activeElement && document.activeElement.classList.contains('ps-tile')) {
                 document.getElementById('masterActionLaunchBtn').focus();
                 e.preventDefault();
             }
-            if(e.key === 'ArrowUp' && (document.activeElement.classList.contains('ps-start-btn') || document.activeElement.classList.contains('ps-sub-menu-item'))) {
-                if(selectedTileElement) selectedTileElement.focus();
+            if(e.key === 'ArrowUp' && document.activeElement && (document.activeElement.classList.contains('ps-start-btn') || document.activeElement.classList.contains('ps-sub-menu-item'))) {
+                if(selectedTileElement) {
+                    selectedTileElement.focus();
+                    selectAndHighlightTile(selectedTileElement);
+                }
                 e.preventDefault();
             }
         });
@@ -757,7 +784,10 @@
                 document.getElementById('gamertagInput').value = cacheName;
                 updateLocalProfileTag(cacheName);
             }
-            if(selectedTileElement) selectedTileElement.focus();
+            if(selectedTileElement) {
+                selectedTileElement.focus();
+                selectAndHighlightTile(selectedTileElement);
+            }
         });
 
         const canvas = document.getElementById("appViewportCanvas");
@@ -775,8 +805,8 @@
             buildOrbisHorizontalCarousel();
             setTimeout(() => {
                 if(selectedTileElement) {
-                    selectedTileElement.classList.add('focused-node');
                     selectedTileElement.focus();
+                    selectAndHighlightTile(selectedTileElement);
                 }
             }, 50);
         }
