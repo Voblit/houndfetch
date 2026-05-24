@@ -141,7 +141,6 @@
             background-position: center;
             background-size: cover;
             border: 3px solid transparent;
-            /* Click disabled to prevent selection desyncs */
             cursor: default; 
             box-shadow: var(--tile-shadow);
             flex-shrink: 0;
@@ -454,7 +453,7 @@
             
             <div class="ps-action-gate-split">
                 <div class="ps-primary-action-pane">
-                    <button class="ps-start-btn focused-node" id="masterActionLaunchBtn" tabindex="-1">
+                    <button class="ps-start-btn" id="masterActionLaunchBtn" tabindex="-1">
                         <span class="button-icon-pulse"></span>
                         <span>begin!</span>
                     </button>
@@ -538,9 +537,9 @@
             </div>
             <div class="ps-prompts-cluster">
                 <span><span class="ps-glyph-btn">◀</span><span class="ps-glyph-btn">▶</span> Arrow Keys: Navigate Track</span>
-                <span><span class="ps-glyph-btn">▲</span> Move to Panel</span>
-                <span><span class="ps-glyph-btn">▼</span> Back to Track</span>
-                <span><span class="ps-glyph-btn">X</span> Enter: Launch</span>
+                <span><span class="ps-glyph-btn">▲</span> Move up to Carousel</span>
+                <span><span class="ps-glyph-btn">▼</span> Select Options Panel</span>
+                <span><span class="ps-glyph-btn">X</span> Enter: Confirm/Launch</span>
                 <span><span class="ps-glyph-btn">O</span> Escape: Exit Game</span>
             </div>
         </footer>
@@ -649,8 +648,6 @@
                     inline: 'center'
                 });
             } else {
-                specific_tile_element.classList.add('focused-node'); 
-                
                 const control_nodes_pool = [
                     document.getElementById('masterActionLaunchBtn'),
                     ...document.querySelectorAll('.ps-sub-menu-item')
@@ -728,7 +725,7 @@
             localStorage.setItem('voblitos_gamertag', val);
         }
 
-        /* Keyboard input sniffer replaces standard cursor listeners completely */
+        
         window.addEventListener('keydown', (e) => {
             if(document.activeElement && document.activeElement.tagName === 'INPUT') return;
 
@@ -786,8 +783,6 @@
                     if (alternate_panel_index === 0) {
                         fire_selected_game_link();
                     }
-                } else {
-                    fire_selected_game_link();
                 }
                 e.preventDefault();
             }
