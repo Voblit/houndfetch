@@ -2,7 +2,18 @@
   "rewrites": [
     {
       "source": "/proxy-data/:path*",
-      "destination": "https://startmyeducation.us/:path*"
+      "destination": "https://cdn.startmyeducation.us/:path*"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/proxy-data/:path*",
+      "headers": [
+        {
+          "key": "Host",
+          "value": "cdn.startmyeducation.us"
+        }
+      ]
     }
   ]
 }
