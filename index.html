@@ -3,372 +3,249 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HoundFetch - A Totally Legit Education Site</title>
+    <title>HoundFetch !!!! epic webiste</title>
     <style>
+        /* i hope this works lol */
         :root {
-            --bg-canvas: #f8f9fa;
+            --bg-canvas: #f0f0f0;
             --bg-panel: #ffffff;
-            --border-color: #cbd5e1;
-            --text-primary: #1e293b;
-            --text-muted: #64748b;
-            --link-color: #2563eb;
-            --link-hover: #1d4ed8;
-            --accent-red: #ef4444;
-            --blog-accent: #10b981;
-            --summary-bg: #f8fafc;
-            --summary-border: #cbd5e1;
-            --academic-blue: #0f172a;
+            --border-color: #333333;
+            --text-primary: #000000;
+            --text-muted: #555555;
+            --link-color: #0000ff;
+            --link-hover: #ff00ff;
+            --accent-red: red;
+            --academic-blue: #00008b;
         }
 
         .dark-theme {
-            --bg-canvas: #0f172a;
-            --bg-panel: #1e293b;
-            --border-color: #334155;
-            --text-primary: #f1f5f9;
-            --text-muted: #94a3b8;
-            --link-color: #38bdf8;
-            --link-hover: #7dd3fc;
-            --summary-bg: #0f172a;
-            --summary-border: #334155;
-            --academic-blue: #38bdf8;
+            --bg-canvas: #121212;
+            --bg-panel: #222222;
+            --border-color: #ffffff;
+            --text-primary: #ffffff;
+            --text-muted: #aaaaaa;
+            --link-color: #00ffff;
+            --link-hover: #ffff00;
+            --academic-blue: #00ffff;
         }
 
         .dyslexia-font {
-            font-family: 'OpenDyslexic', 'Comic Sans MS', sans-serif !important;
+            font-family: 'Comic Sans MS', 'Comic Sans', cursive !important;
         }
 
         * {
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
-            transition: background-color 0.2s, color 0.2s;
         }
 
         body {
             background-color: var(--bg-canvas);
             color: var(--text-primary);
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            font-size: 14px;
-            line-height: 1.6;
-            padding: 24px;
+            font-family: 'Comic Sans MS', 'Comic Sans', sans-serif;
+            padding: 10px;
         }
 
         .wiki-container {
-            max-width: 1200px;
-            margin: 0 auto;
+            max-width: 900px;
+            margin: 10px auto;
             background: var(--bg-panel);
-            border: 1px solid var(--border-color);
-            padding: 40px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-            border-radius: 8px;
+            border: 3px solid var(--border-color);
+            padding: 20px;
         }
 
         .wiki-header {
-            border-bottom: 2px solid var(--academic-blue);
-            padding-bottom: 16px;
-            margin-bottom: 24px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            border-bottom: 4px dashed var(--academic-blue);
+            padding-bottom: 10px;
+            margin-bottom: 20px;
         }
 
         .header-left {
             display: flex;
             align-items: center;
-            gap: 18px;
+            gap: 10px;
         }
 
+        /* plain normal image box */
         .wiki-logo {
-            width: 50px;
-            height: 50px;
-            border: 2px solid var(--academic-blue);
-            background-color: #eee;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            border-radius: 50%;
-            object-fit: cover;
-        }
-
-        .wiki-title-block {
-            display: flex;
-            flex-direction: column;
+            width: 130px;
+            height: auto;
+            border: 2px solid #000;
         }
 
         .wiki-title {
-            font-family: "Segoe UI", Helvetica, Arial, sans-serif;
-            font-size: 28px;
-            font-weight: 800;
-            letter-spacing: -0.5px;
-            color: var(--text-primary);
+            font-size: 40px;
+            font-weight: bold;
+            color: #ff0000;
             cursor: pointer;
-            line-height: 1.1;
+            text-shadow: 2px 2px #ffcc00;
         }
 
         .wiki-subtitle {
-            font-size: 12px;
+            font-size: 14px;
             color: var(--text-muted);
-            font-style: italic;
-            margin-top: 4px;
         }
 
         .academic-toolbar {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
+            margin-top: 10px;
         }
 
         .tool-btn {
-            background: var(--bg-panel);
-            border: 1px solid var(--border-color);
-            color: var(--text-primary);
-            padding: 6px 12px;
-            font-size: 12px;
-            font-weight: 600;
-            border-radius: 4px;
+            background: yellow;
+            color: black;
+            padding: 5px;
+            font-weight: bold;
             cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 6px;
+            border: 2px solid black;
+            margin-right: 5px;
         }
 
         .tool-btn:hover {
-            background: var(--link-color);
-            color: white;
-            border-color: var(--link-color);
+            background: lime;
         }
 
         .search-section {
-            background: var(--bg-canvas);
-            border: 1px solid var(--border-color);
-            padding: 20px;
-            margin-bottom: 24px;
-            border-radius: 6px;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
+            background: #e0e0e0;
+            border: 2px solid black;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+        .dark-theme .search-section {
+            background: #444;
         }
 
-        .search-section label {
-            font-weight: 700;
+        .search-controls input {
+            padding: 8px;
             font-size: 14px;
-            color: var(--text-primary);
-        }
-
-        .search-controls {
-            display: flex;
-            gap: 10px;
-        }
-
-        .search-section input {
-            padding: 10px 16px;
-            font-size: 15px;
-            border: 1px solid var(--border-color);
-            border-radius: 4px;
-            width: 100%;
-            max-width: 400px;
-            background: var(--bg-panel);
-            color: var(--text-primary);
+            width: 60%;
         }
 
         .search-section button {
-            padding: 10px 24px;
-            font-size: 15px;
-            background-color: var(--bg-panel);
-            border: 1px solid var(--border-color);
-            color: var(--text-primary);
-            border-radius: 4px;
+            padding: 8px;
+            background: cyan;
+            font-weight: bold;
             cursor: pointer;
-            font-weight: 600;
-        }
-
-        .search-section button:hover {
-            background-color: var(--bg-canvas);
         }
 
         .wiki-layout {
-            display: grid;
-            grid-template-columns: 1fr 300px;
-            gap: 32px;
-        }
-
-        @media (max-width: 850px) {
-            .wiki-layout {
-                grid-template-columns: 1fr;
-            }
-            .wiki-header {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 14px;
-            }
-        }
-
-        .main-article p {
-            margin-bottom: 16px;
-            text-align: justify;
-            font-size: 15px;
-        }
-
-        .main-article h2 {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-            font-size: 24px;
-            font-weight: 700;
-            border-bottom: 1px solid var(--border-color);
-            margin: 28px 0 16px;
-            padding-bottom: 6px;
-            color: var(--text-primary);
-        }
-
-        .article-stats-bar {
-            display: flex;
-            gap: 15px;
-            font-size: 12px;
-            color: var(--text-muted);
-            margin-bottom: 15px;
-            background: var(--bg-canvas);
-            padding: 6px 12px;
-            border-radius: 4px;
-            font-weight: 500;
-        }
-
-        .key-points-panel {
-            background-color: var(--summary-bg);
-            border: 1px solid var(--summary-border);
-            border-left: 5px solid var(--link-color);
-            padding: 16px 20px;
-            margin: 20px 0;
-            border-radius: 4px;
-        }
-
-        .key-points-title {
-            font-weight: 700;
-            font-size: 13px;
-            text-transform: uppercase;
-            letter-spacing: 0.7px;
-            color: var(--text-primary);
-            margin-bottom: 8px;
-        }
-
-        .key-points-list {
-            padding-left: 20px;
-            margin: 0;
-        }
-
-        .key-points-list li {
-            font-size: 14px;
-            color: var(--text-primary);
-            margin-bottom: 6px;
-        }
-
-        .citation-box {
-            background: #fffdf3;
-            border: 1px solid #e6db55;
-            padding: 15px;
-            border-radius: 4px;
-            margin-top: 20px;
-            color: #333;
-        }
-        .dark-theme .citation-box {
-            background: #2c2a1c;
-            border-color: #55501a;
-            color: #ddd;
-        }
-
-        .mission-section {
-            margin-bottom: 24px;
-            padding: 15px;
-            background: var(--bg-canvas);
-            border-radius: 6px;
-            border-left: 4px solid var(--academic-blue);
-        }
-
-        .mission-title {
-            font-weight: bold;
-            font-size: 14px;
-            text-transform: uppercase;
-            color: var(--text-muted);
-            margin-bottom: 4px;
-        }
-
-        .testimonial-heading {
-            font-size: 20px;
-            font-weight: bold;
-            margin: 35px 0 15px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .testimonial-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 16px;
-            margin-top: 15px;
-        }
-
-        .testimonial-card {
-            background: var(--bg-canvas);
-            border: 1px solid var(--border-color);
-            padding: 16px;
-            border-radius: 6px;
-            font-style: italic;
-        }
-
-        .testimonial-author {
-            display: block;
-            margin-top: 8px;
-            font-weight: bold;
-            font-style: normal;
-            font-size: 12px;
-            color: var(--text-muted);
-        }
-
-        .sidebar-wrapper {
             display: flex;
             flex-direction: column;
             gap: 20px;
         }
 
+        @media (min-width: 700px) {
+            .wiki-layout {
+                display: grid;
+                grid-template-columns: 2fr 1fr;
+            }
+        }
+
+        .main-article h2 {
+            font-size: 24px;
+            color: blue;
+            margin-bottom: 10px;
+            text-decoration: underline;
+        }
+        .dark-theme .main-article h2 {
+            color: #00ffff;
+        }
+
+        .article-stats-bar {
+            font-size: 11px;
+            background: #eee;
+            padding: 5px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            color: black;
+        }
+
+        .key-points-panel {
+            background: #ffffcc;
+            border: 2px dashed red;
+            padding: 10px;
+            margin: 15px 0;
+            color: black;
+        }
+
+        .concept-block {
+            margin-bottom: 20px;
+            padding: 10px;
+            background: #f9f9f9;
+            border: 1px solid black;
+        }
+        .dark-theme .concept-block {
+            background: #333;
+        }
+
+        .concept-title {
+            font-weight: bold;
+            color: green;
+        }
+        .dark-theme .concept-title {
+            color: lime;
+        }
+
+        .feedback-heading {
+            font-size: 20px;
+            font-weight: bold;
+            margin-top: 20px;
+            color: purple;
+        }
+        .dark-theme .feedback-heading {
+            color: magenta;
+        }
+
+        .feedback-card {
+            background: #f0f0f0;
+            border: 1px dashed gray;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+        .dark-theme .feedback-card {
+            background: #222;
+        }
+
+        .feedback-user {
+            display: block;
+            font-weight: bold;
+            color: darkblue;
+            font-size: 12px;
+        }
+        .dark-theme .feedback-user {
+            color: lightblue;
+        }
+
         .sidebar-box {
-            background-color: var(--bg-canvas);
-            border: 1px solid var(--border-color);
-            padding: 18px;
-            border-radius: 6px;
+            background: #fff0f5;
+            border: 2px solid var(--border-color);
+            padding: 15px;
+            margin-bottom: 15px;
+            color: black;
+        }
+        .dark-theme .sidebar-box {
+            background: #443344;
+            color: white;
         }
 
         .sidebar-box h4 {
-            font-size: 12px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.8px;
-            margin-bottom: 12px;
-            border-bottom: 1px solid var(--border-color);
-            padding-bottom: 6px;
-            color: var(--text-muted);
+            margin-bottom: 10px;
+            color: red;
         }
 
         .tool-link, .nav-link {
-            display: flex;
-            align-items: center;
-            gap: 8px;
+            display: block;
             color: var(--link-color);
-            text-decoration: none;
-            margin-bottom: 10px;
-            cursor: pointer;
-            font-size: 13.5px;
-            font-weight: 500;
-        }
-
-        .tool-link:hover, .nav-link:hover {
-            color: var(--link-hover);
             text-decoration: underline;
-        }
-
-        .hidden {
-            display: none !important;
+            margin-bottom: 8px;
+            cursor: pointer;
         }
 
         .loading-text {
-            font-style: italic;
-            color: var(--text-muted);
+            font-weight: bold;
+            color: orange;
+            animation: blink 1s infinite;
+        }
+        @keyframes blink {
+            50% { opacity: 0; }
         }
     </style>
 </head>
@@ -378,23 +255,23 @@
         
         <div class="wiki-header">
             <div class="header-left">
-                <img src="dog.jpeg" alt="HoundFetch Logo" class="wiki-logo" onerror="this.src='https://images.unsplash.com/photo-1543466835-00a7907e9de1?w=100';">
-                <div class="wiki-title-block">
+                <img src="dog.jpeg" alt="dog picture" class="wiki-logo" onerror="this.src='https://images.unsplash.com/photo-1543466835-00a7907e9de1?w=100';">
+                <div>
                     <div class="wiki-title" onclick="navigateToHome()">HoundFetch</div>
-                    <div class="wiki-subtitle">scraping random APIs since 2026! :)</div>
+                    <div class="wiki-subtitle">we steal stuff from random APIs since 2026 :P</div>
                 </div>
             </div>
             <div class="academic-toolbar">
-                <button class="tool-btn" onclick="toggleTheme()">🌓 Toggle Theme</button>
-                <button class="tool-btn" onclick="toggleDyslexia()">🅰️ Dyslexia Font</button>
+                <button class="tool-btn" onclick="toggleTheme()">💡 DARK MODE BTN</button>
+                <button class="tool-btn" onclick="toggleDyslexia()">Font changer</button>
             </div>
         </div>
 
         <div class="search-section">
-            <label for="wikiSearch">Search live Wikipedia entries...</label>
+            <p><b>search wikipedia things right here inside school:</b></p>
             <div class="search-controls">
-                <input type="text" id="wikiSearch" placeholder="Type a topic (e.g., Internet, Computing) or code..." />
-                <button onclick="checkRoute()">Execute Query</button>
+                <input type="text" id="wikiSearch" placeholder="type words here..." />
+                <button onclick="checkRoute()">GO!</button>
             </div>
         </div>
 
@@ -404,19 +281,19 @@
 
             <div class="sidebar-wrapper">
                 <div class="sidebar-box">
-                    <h4>Navigation</h4>
-                    <span class="nav-link" onclick="navigateToHome()">📰 Site Dashboard</span>
-                    <span class="nav-link" onclick="navigateToPage('World Wide Web')">🌐 World Wide Web</span>
-                    <span class="nav-link" onclick="navigateToPage('Hypertext Transfer Protocol')">🔗 HTTP Protocol</span>
-                    <span class="nav-link" onclick="navigateToPage('WebAssembly')">⚙️ WebAssembly Core</span>
+                    <h4>cool pages to click</h4>
+                    <span class="nav-link" onclick="navigateToHome()">GO BACK HOME</span>
+                    <span class="nav-link" onclick="navigateToPage('World Wide Web')">internet stuff</span>
+                    <span class="nav-link" onclick="navigateToPage('Hypertext Transfer Protocol')">http things</span>
+                    <span class="nav-link" onclick="navigateToPage('WebAssembly')">webassembly thingy</span>
                 </div>
 
                 <div class="sidebar-box">
-                    <h4>Portal Utilities</h4>
-                    <span class="tool-link" onclick="generateAcademicCitation()">🎓 Generate Bibliography Citation</span>
-                    <span class="tool-link" onclick="triggerMetrics()">📡 System Status & Latency</span>
-                    <span class="tool-link" onclick="clearLocalCache()">🧹 Clear Node Memory Cache</span>
-                    <span class="tool-link" onclick="window.print()">🖨️ Print Layout Tree</span>
+                    <h4>extra buttons lol</h4>
+                    <span class="tool-link" onclick="generateAcademicCitation()">citation maker for homework</span>
+                    <span class="tool-link" onclick="triggerMetrics()">check if site is lagging</span>
+                    <span class="tool-link" onclick="clearLocalCache()">fix lag / clear cache</span>
+                    <span class="tool-link" onclick="window.print()">print this page out</span>
                 </div>
             </div>
         </div>
@@ -428,32 +305,32 @@
             <h2>A Totally Legit "Education" Site Students Secretly Use</h2>
             <p>Here we look like a serious learning platform… on purpose. In reality, this is where you go when you say you're studying but you're actually just trying to survive another class period with some games and distractions.</p>
             
-            <div class="mission-section">
-                <div class="mission-title">> Our Mission</div>
+            <div class="concept-block">
+                <div class="concept-title">> Our Mission</div>
                 <p>"Our mission is simple: give you something that loads in a school tab, looks harmless to teachers, and keeps you entertained. If you accidentally learn something along the way, that’s a bonus, not a guarantee."</p>
             </div>
 
-            <div class="mission-section">
-                <div class="mission-title">> Our Vision</div>
+            <div class="concept-block">
+                <div class="concept-title">> Our Vision</div>
                 <p>"We envision a world where 'I'm on an education site' is technically true, while you're very obviously not doing homework. This is not a replacement for school, tutors, or anything even remotely official."</p>
             </div>
 
-            <div class="testimonial-heading">
-                <span>“</span> What People Are Saying About Us <span style="font-size:12px; font-weight:normal; color:var(--link-color); cursor:pointer; margin-left:auto;">See more</span>
+            <div class="feedback-heading">
+                “ what people are saying about us...
             </div>
 
-            <div class="testimonial-grid">
-                <div class="testimonial-card">
+            <div class="feedback-grid">
+                <div class="feedback-card">
                     "The practical insights from the business management courses have been instrumental in my professional growth."
-                    <span class="testimonial-author">- William Afton, Manager</span>
+                    <span class="feedback-user">- William Afton, Manager</span>
                 </div>
-                <div class="testimonial-card">
-                    "The super educational tools made learning languages fun and effective for me."
-                    <span class="testimonial-author">- Ethan G., Language Learner</span>
+                <div class="feedback-card">
+                    "Cool, they have a eaglercraft server too! add server wss://server.houndfetch.cc"
+                    <span class="feedback-user">- Abc1234yc12, plays minecraft</span>
                 </div>
-                <div class="testimonial-card">
-                    "The quality of educational content for complex subjects like calculus is unparalleled."
-                    <span class="testimonial-author">- Nerd, High School Student</span>
+                <div class="feedback-card">
+                    "Pfft, utterly useless, didnt explain calculus enough."
+                    <span class="feedback-user">- Nerd, High School Student</span>
                 </div>
             </div>
         `;
@@ -463,8 +340,6 @@
 
         const secretTriggers = [
             "voblitisgood", 
-            "celestialudenberg", 
-            "celestiamyqueen", 
             "ilikeflowers", 
             "funni", 
             "lolcat", 
@@ -487,11 +362,11 @@
 
         function triggerMetrics() {
             let ping = Math.floor(Math.random() * 45) + 12;
-            alert(`API Gateway Status: Operational\nUpstream Node: Active Fallback Matrix\nLast Measured Latency: ${ping}ms`);
+            alert(`site status is good i think\nlag speed: ${ping}ms`);
         }
 
         function clearLocalCache() {
-            alert("Local storage node mirrors and query allocation cache cleared.");
+            alert("deleted the cache stuff successfully");
         }
 
         function countWords(text) {
@@ -515,20 +390,18 @@
             let dateStr = today.toLocaleDateString('en-US', { day: 'numeric', month: 'short', year: 'numeric' });
             
             let mla = `"${currentLoadedTitle}." <i>HoundFetch Reference Index Engine</i>, ${dateStr}, ${currentLoadedURL}. Accessed ${dateStr}.`;
-            let apa = `HoundFetch Portal Reference. (${today.getFullYear()}). <i>${currentLoadedTitle}</i>. Retrieved from ${currentLoadedURL}`;
 
             let citationHTML = `
-                <div class="citation-box" id="citationOutput">
-                    <h4 style="margin-bottom: 5px; font-size:12px; font-weight:bold;">📝 Auto-Generated Academic Citations</h4>
-                    <p style="font-size:12px; margin-bottom:6px;"><strong>MLA Format:</strong><br>${mla}</p>
-                    <p style="font-size:12px;"><strong>APA 7th Edition Format:</strong><br>${apa}</p>
+                <div class="key-points-panel" id="citationOutput">
+                    <h4>copy this for your teacher:</h4>
+                    <p style="font-size:12px;">${mla}</p>
                 </div>
             `;
             target.innerHTML += citationHTML;
         }
 
         function generateBullets(text) {
-            if (!text) return ["No overview text found to summarize."];
+            if (!text) return ["nothing here"];
             let rawString = text.replace(/<\/?[^>]+(>|$)/g, "").trim();
             let splitSentences = rawString.split(/(?<=[.!?])\s+/);
             let filtered = splitSentences.filter(item => item.trim().length > 15);
@@ -537,7 +410,7 @@
 
         function fetchPipelineData(query) {
             var targetContent = document.getElementById("articleDynamicContent");
-            targetContent.innerHTML = '<p class="loading-text">Querying reference indices...</p>';
+            targetContent.innerHTML = '<p class="loading-text">loading please wait...</p>';
             
             if (query.indexOf(' ') === -1) {
                 fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${encodeURIComponent(query)}`)
@@ -554,16 +427,11 @@
                         currentLoadedURL = window.location.href;
 
                         targetContent.innerHTML = `
-                            <p style="font-size:12px; color:var(--text-muted); margin-bottom:4px;"><i>Source: Open Dictionary API Client</i></p>
-                            <h2>Definition Node: ${wordData.word} [${partOfSpeech}]</h2>
-                            <div class="article-stats-bar">
-                                <span>📚 Type: Core Language Definition</span>
-                            </div>
+                            <h2>word info: ${wordData.word} (${partOfSpeech})</h2>
                             <div class="key-points-panel">
-                                <div class="key-points-title">💡 Definition Summary</div>
-                                <p style="margin-bottom:0; font-size:14px;">${definition}</p>
+                                <b>what it means:</b>
+                                <p>${definition}</p>
                             </div>
-                            <p>Extracted semantic entries compiled natively. For broad context searches or multi-word topics, query via secondary indexing routes.</p>
                         `;
                     })
                     .catch(() => {
@@ -580,10 +448,7 @@
 
             fetch(url)
                 .then(response => {
-                    if (!response.ok) {
-                        if (response.status === 404) throw new Error("Article page not located.");
-                        throw new Error("API failure status returned.");
-                    }
+                    if (!response.ok) throw new Error("could not find that page bro");
                     return response.json();
                 })
                 .then(data => {
@@ -596,35 +461,23 @@
                     currentLoadedURL = window.location.href;
                     
                     targetContent.innerHTML = `
-                        <p style="font-size:12px; color:var(--text-muted); margin-bottom:4px;"><i>Live source from Wikipedia, the free encyclopedia</i></p>
                         <h2>${data.title}</h2>
-
                         <div class="article-stats-bar">
-                            <span>📊 Word Count: ${metrics.words}</span>
-                            <span>🔤 Characters: ${metrics.chars}</span>
-                            <span>⏱️ Est. Reading Time: ${metrics.time} min</span>
+                            words: ${metrics.words} | reading time: ${metrics.time} mins
                         </div>
-
                         <div class="key-points-panel">
-                            <div class="key-points-title">💡 Quick Key Points Summary</div>
-                            <ul class="key-points-list">
-                                ${bulletItemsHTML}
-                            </ul>
+                            <b>summary points:</b>
+                            <ul>${bulletItemsHTML}</ul>
                         </div>
-
-                        ${data.thumbnail ? `<img src="${data.thumbnail.source}" style="float: right; margin: 0 0 15px 15px; border: 1px solid var(--border-color); max-width: 200px; border-radius:4px; box-shadow: 0 2px 6px rgba(0,0,0,0.15);" alt="Wikipedia Visual Reference">` : ''}
+                        ${data.thumbnail ? `<img src="${data.thumbnail.source}" style="max-width:150px; border:2px solid black;" alt="pic">` : ''}
                         <p>${data.extract_html || data.extract}</p>
-                        <br style="clear: both;">
-                        <hr style="border: 0; border-top: 1px solid var(--border-color); margin-top: 20px;">
-                        <p style="font-size: 12px; color: var(--text-muted);">Full reference link available at: <a href="${data.content_urls.desktop.page}" target="_blank" style="color: var(--link-color);">${data.content_urls.desktop.page}</a></p>
                     `;
                 })
                 .catch(err => {
                     targetContent.innerHTML = `
-                        <h2>Query Execution Error</h2>
-                        <p style="color: var(--accent-red); font-weight:bold;">${err.message}</p>
-                        <p>Verify that the term is spelled correctly or check network status indicators.</p>
-                        <button onclick="navigateToHome()" style="padding: 6px 12px; margin-top: 10px; cursor: pointer;">Return to Home</button>
+                        <h2>error omg</h2>
+                        <p style="color:red;">${err.message}</p>
+                        <button onclick="navigateToHome()">go home</button>
                     `;
                 });
         }
@@ -669,6 +522,6 @@
             }
         });
     </script>
-    <footer><center>Made with ♡ & ☆ by yaboy <a href="https://voblit.vercel.app" target="_blank" style="color: inherit; text-decoration: underline;">Voblit</a>, and YES nolan I DID make this myself 🙄</center></footer>
+    <footer style="margin-top:20px; text-align:center; font-size:12px;">made with love by <a href="https://voblit.vercel.app" target="_blank">Voblit</a> nolan i made this myself  🙄</footer>
 </body>
 </html>
