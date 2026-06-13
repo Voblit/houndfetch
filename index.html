@@ -3,34 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WikiSniff</title>
+    <title>HoundFetch - A Totally Legit Education Site</title>
     <style>
         :root {
             --bg-canvas: #f8f9fa;
             --bg-panel: #ffffff;
-            --border-color: #a2a9b1;
-            --text-primary: #202122;
-            --text-muted: #54595d;
-            --link-color: #3366cc;
-            --link-hover: #23468c;
-            --accent-red: #b32424;
-            --blog-accent: #008559;
-            --summary-bg: #fafbfc;
+            --border-color: #cbd5e1;
+            --text-primary: #1e293b;
+            --text-muted: #64748b;
+            --link-color: #2563eb;
+            --link-hover: #1d4ed8;
+            --accent-red: #ef4444;
+            --blog-accent: #10b981;
+            --summary-bg: #f8fafc;
             --summary-border: #cbd5e1;
-            --academic-blue: #0f4c81;
+            --academic-blue: #0f172a;
         }
 
         .dark-theme {
-            --bg-canvas: #18191a;
-            --bg-panel: #242526;
-            --border-color: #3e4042;
-            --text-primary: #e4e6eb;
-            --text-muted: #b0b3b8;
-            --link-color: #4599ff;
-            --link-hover: #2e89ff;
-            --summary-bg: #1c1e1f;
-            --summary-border: #3a3b3c;
-            --academic-blue: #4599ff;
+            --bg-canvas: #0f172a;
+            --bg-panel: #1e293b;
+            --border-color: #334155;
+            --text-primary: #f1f5f9;
+            --text-muted: #94a3b8;
+            --link-color: #38bdf8;
+            --link-hover: #7dd3fc;
+            --summary-bg: #0f172a;
+            --summary-border: #334155;
+            --academic-blue: #38bdf8;
         }
 
         .dyslexia-font {
@@ -79,12 +79,13 @@
         }
 
         .wiki-logo {
-            width: 120px;
-            height: auto;
+            width: 50px;
+            height: 50px;
             border: 2px solid var(--academic-blue);
             background-color: #eee;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            border-radius: 4px;
+            border-radius: 50%;
+            object-fit: cover;
         }
 
         .wiki-title-block {
@@ -93,16 +94,17 @@
         }
 
         .wiki-title {
-            font-family: "Georgia", serif;
-            font-size: 32px;
-            font-weight: bold;
+            font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+            font-size: 28px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
             color: var(--text-primary);
             cursor: pointer;
             line-height: 1.1;
         }
 
         .wiki-subtitle {
-            font-size: 13px;
+            font-size: 12px;
             color: var(--text-muted);
             font-style: italic;
             margin-top: 4px;
@@ -147,7 +149,7 @@
 
         .search-section label {
             font-weight: 700;
-            font-size: 15px;
+            font-size: 14px;
             color: var(--text-primary);
         }
 
@@ -179,10 +181,7 @@
         }
 
         .search-section button:hover {
-            background-color: #f0f0f0;
-        }
-        .dark-theme .search-section button:hover {
-            background-color: #3a3b3c;
+            background-color: var(--bg-canvas);
         }
 
         .wiki-layout {
@@ -209,9 +208,9 @@
         }
 
         .main-article h2 {
-            font-family: "Georgia", serif;
-            font-size: 26px;
-            font-weight: normal;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            font-size: 24px;
+            font-weight: 700;
             border-bottom: 1px solid var(--border-color);
             margin: 28px 0 16px;
             padding-bottom: 6px;
@@ -273,30 +272,53 @@
             color: #ddd;
         }
 
-        .blog-post {
-            margin-bottom: 30px;
-            padding-bottom: 20px;
-            border-bottom: 1px dashed var(--border-color);
+        .mission-section {
+            margin-bottom: 24px;
+            padding: 15px;
+            background: var(--bg-canvas);
+            border-radius: 6px;
+            border-left: 4px solid var(--academic-blue);
         }
 
-        .blog-meta {
+        .mission-title {
+            font-weight: bold;
+            font-size: 14px;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 4px;
+        }
+
+        .testimonial-heading {
+            font-size: 20px;
+            font-weight: bold;
+            margin: 35px 0 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 16px;
+            margin-top: 15px;
+        }
+
+        .testimonial-card {
+            background: var(--bg-canvas);
+            border: 1px solid var(--border-color);
+            padding: 16px;
+            border-radius: 6px;
+            font-style: italic;
+        }
+
+        .testimonial-author {
+            display: block;
+            margin-top: 8px;
+            font-weight: bold;
+            font-style: normal;
             font-size: 12px;
             color: var(--text-muted);
-            margin-bottom: 8px;
-        }
-
-        .blog-tag {
-            background: #eef7f2;
-            color: var(--blog-accent);
-            padding: 2px 6px;
-            border-radius: 3px;
-            font-weight: 600;
-            margin-left: 8px;
-        }
-        
-        .blog-tag.sys {
-            background: #f1f5f9;
-            color: #475569;
         }
 
         .sidebar-wrapper {
@@ -356,14 +378,14 @@
         
         <div class="wiki-header">
             <div class="header-left">
-                <img src="dog.jpeg" alt="WikiSniff Logo" class="wiki-logo" onerror="this.src='https://images.unsplash.com/photo-1543466835-00a7907e9de1?w=100';">
+                <img src="dog.jpeg" alt="HoundFetch Logo" class="wiki-logo" onerror="this.src='https://images.unsplash.com/photo-1543466835-00a7907e9de1?w=100';">
                 <div class="wiki-title-block">
-                    <div class="wiki-title" onclick="navigateToHome()">WikiSniff</div>
-                    <div class="wiki-subtitle">scraping wikipedia since 2026! :)</div>
+                    <div class="wiki-title" onclick="navigateToHome()">HoundFetch</div>
+                    <div class="wiki-subtitle">scraping random APIs since 2026! :)</div>
                 </div>
             </div>
             <div class="academic-toolbar">
-                <button class="tool-btn" onclick="toggleTheme()">🌓 Toggle Dark Mode</button>
+                <button class="tool-btn" onclick="toggleTheme()">🌓 Toggle Theme</button>
                 <button class="tool-btn" onclick="toggleDyslexia()">🅰️ Dyslexia Font</button>
             </div>
         </div>
@@ -383,7 +405,7 @@
             <div class="sidebar-wrapper">
                 <div class="sidebar-box">
                     <h4>Navigation</h4>
-                    <span class="nav-link" onclick="navigateToHome()">📰 Site Dev Blog</span>
+                    <span class="nav-link" onclick="navigateToHome()">📰 Site Dashboard</span>
                     <span class="nav-link" onclick="navigateToPage('World Wide Web')">🌐 World Wide Web</span>
                     <span class="nav-link" onclick="navigateToPage('Hypertext Transfer Protocol')">🔗 HTTP Protocol</span>
                     <span class="nav-link" onclick="navigateToPage('WebAssembly')">⚙️ WebAssembly Core</span>
@@ -396,46 +418,49 @@
                     <span class="tool-link" onclick="clearLocalCache()">🧹 Clear Node Memory Cache</span>
                     <span class="tool-link" onclick="window.print()">🖨️ Print Layout Tree</span>
                 </div>
-                
             </div>
         </div>
 
     </div>
 
     <script>
-        const blogContent = `
-            <h2>Site Developer Blog</h2>
-            <p>Welcome to the project updates section. Here we detail architecture adjustments and engine modifications.</p>
+        const homeDashboardContent = `
+            <h2>A Totally Legit "Education" Site Students Secretly Use</h2>
+            <p>Here we look like a serious learning platform… on purpose. In reality, this is where you go when you say you're studying but you're actually just trying to survive another class period with some games and distractions.</p>
             
-            <div class="blog-post">
-                <h3>System Upgrade: Live Wikipedia Integration</h3>
-                <div class="blog-meta">Posted on May 22, 2026 by Admin <span class="blog-tag">Feature</span></div>
-                <p>We have successfully integrated the official MediaWiki API. The search component now accepts real-time entries, pulling directly from live Wikipedia summaries. Standard search parsing handles common spaces, multi-word titles, and handles network request timeouts gracefully.</p>
+            <div class="mission-section">
+                <div class="mission-title">> Our Mission</div>
+                <p>"Our mission is simple: give you something that loads in a school tab, looks harmless to teachers, and keeps you entertained. If you accidentally learn something along the way, that’s a bonus, not a guarantee."</p>
             </div>
 
-            <div class="blog-post">
-                <h3>Optimizing External Resource Layouts</h3>
-                <div class="blog-meta">Posted on May 10, 2026 by Architecture Team <span class="blog-tag">Core</span></div>
-                <p>To keep dependencies light, all content injection now leverages pure asynchronous native Fetch mechanisms. This ensures optimal browser rendering speeds and avoids layout shifting when fetching external datasets.</p>
+            <div class="mission-section">
+                <div class="mission-title">> Our Vision</div>
+                <p>"We envision a world where 'I'm on an education site' is technically true, while you're very obviously not doing homework. This is not a replacement for school, tutors, or anything even remotely official."</p>
             </div>
 
-            <div class="blog-post">
-                <h3>CORS Headers & Mirror Handshakes</h3>
-                <div class="blog-meta">Posted on April 28, 2026 by Systems Engineer <span class="blog-tag sys">Network</span></div>
-                <p>Addressed cross-origin restriction anomalies appearing on upstream nodes. Reconfigured local routing to match typical REST API structure payloads and optimized buffer streams for lower latency lookups.</p>
+            <div class="testimonial-heading">
+                <span>“</span> What People Are Saying About Us <span style="font-size:12px; font-weight:normal; color:var(--link-color); cursor:pointer; margin-left:auto;">See more</span>
             </div>
 
-            <div class="blog-post">
-                <h3>Initial Engine Framework Standup</h3>
-                <div class="blog-meta">Posted on April 15, 2026 by Admin <span class="blog-tag sys">Init</span></div>
-                <p>Project initialized. Standard layout patterns implemented using strict CSS properties to avoid heavy render threads. Basic text processing pipelines established for testing inbound content arrays.</p>
+            <div class="testimonial-grid">
+                <div class="testimonial-card">
+                    "The practical insights from the business management courses have been instrumental in my professional growth."
+                    <span class="testimonial-author">- William Afton, Manager</span>
+                </div>
+                <div class="testimonial-card">
+                    "The super educational tools made learning languages fun and effective for me."
+                    <span class="testimonial-author">- Ethan G., Language Learner</span>
+                </div>
+                <div class="testimonial-card">
+                    "The quality of educational content for complex subjects like calculus is unparalleled."
+                    <span class="testimonial-author">- Nerd, High School Student</span>
+                </div>
             </div>
         `;
         
-        let currentLoadedTitle = "WikiSniff Developer Blog";
+        let currentLoadedTitle = "HoundFetch Home Platform";
         let currentLoadedURL = window.location.href;
 
-        // Keywords that trigger redirecting to bonus.html
         const secretTriggers = [
             "voblitisgood", 
             "celestialudenberg", 
@@ -446,10 +471,10 @@
             "digbick"
         ];
 
-        function loadBlog() {
-            currentLoadedTitle = "WikiSniff Developer Blog";
+        function loadHome() {
+            currentLoadedTitle = "HoundFetch Home";
             currentLoadedURL = window.location.href.split('#')[0];
-            document.getElementById("articleDynamicContent").innerHTML = blogContent;
+            document.getElementById("articleDynamicContent").innerHTML = homeDashboardContent;
         }
 
         function toggleTheme() {
@@ -462,7 +487,7 @@
 
         function triggerMetrics() {
             let ping = Math.floor(Math.random() * 45) + 12;
-            alert(`API Gateway Status: Operational\nUpstream Node: Wikipedia REST v1\nLast Measured Latency: ${ping}ms`);
+            alert(`API Gateway Status: Operational\nUpstream Node: Active Fallback Matrix\nLast Measured Latency: ${ping}ms`);
         }
 
         function clearLocalCache() {
@@ -489,8 +514,8 @@
             let today = new Date();
             let dateStr = today.toLocaleDateString('en-US', { day: 'numeric', month: 'short', year: 'numeric' });
             
-            let mla = `"${currentLoadedTitle}." <i>WikiSniff Summary Engine Index</i>, ${dateStr}, ${currentLoadedURL}. Accessed ${dateStr}.`;
-            let apa = `WikiSniff Cluster Reference. (${today.getFullYear()}). <i>${currentLoadedTitle}</i>. Retrieved from ${currentLoadedURL}`;
+            let mla = `"${currentLoadedTitle}." <i>HoundFetch Reference Index Engine</i>, ${dateStr}, ${currentLoadedURL}. Accessed ${dateStr}.`;
+            let apa = `HoundFetch Portal Reference. (${today.getFullYear()}). <i>${currentLoadedTitle}</i>. Retrieved from ${currentLoadedURL}`;
 
             let citationHTML = `
                 <div class="citation-box" id="citationOutput">
@@ -510,10 +535,47 @@
             return filtered.length > 0 ? filtered.slice(0, 3) : [rawString.substring(0, 130) + "..."];
         }
 
+        function fetchPipelineData(query) {
+            var targetContent = document.getElementById("articleDynamicContent");
+            targetContent.innerHTML = '<p class="loading-text">Querying reference indices...</p>';
+            
+            if (query.indexOf(' ') === -1) {
+                fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${encodeURIComponent(query)}`)
+                    .then(res => {
+                        if (!res.ok) throw new Error();
+                        return res.json();
+                    })
+                    .then(data => {
+                        let wordData = data[0];
+                        let definition = wordData.meanings[0].definitions[0].definition;
+                        let partOfSpeech = wordData.meanings[0].partOfSpeech;
+                        
+                        currentLoadedTitle = `Definition: ${wordData.word}`;
+                        currentLoadedURL = window.location.href;
+
+                        targetContent.innerHTML = `
+                            <p style="font-size:12px; color:var(--text-muted); margin-bottom:4px;"><i>Source: Open Dictionary API Client</i></p>
+                            <h2>Definition Node: ${wordData.word} [${partOfSpeech}]</h2>
+                            <div class="article-stats-bar">
+                                <span>📚 Type: Core Language Definition</span>
+                            </div>
+                            <div class="key-points-panel">
+                                <div class="key-points-title">💡 Definition Summary</div>
+                                <p style="margin-bottom:0; font-size:14px;">${definition}</p>
+                            </div>
+                            <p>Extracted semantic entries compiled natively. For broad context searches or multi-word topics, query via secondary indexing routes.</p>
+                        `;
+                    })
+                    .catch(() => {
+                        fetchWikipedia(query);
+                    });
+            } else {
+                fetchWikipedia(query);
+            }
+        }
+
         function fetchWikipedia(pageTitle) {
             var targetContent = document.getElementById("articleDynamicContent");
-            targetContent.innerHTML = '<p class="loading-text">Querying Wikipedia REST API database endpoints...</p>';
-            
             var url = `https://en.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(pageTitle.replace(/ /g, '_'))}`;
 
             fetch(url)
@@ -562,19 +624,18 @@
                         <h2>Query Execution Error</h2>
                         <p style="color: var(--accent-red); font-weight:bold;">${err.message}</p>
                         <p>Verify that the term is spelled correctly or check network status indicators.</p>
-                        <button onclick="navigateToHome()" style="padding: 6px 12px; margin-top: 10px; cursor: pointer;">Return to Blog</button>
+                        <button onclick="navigateToHome()" style="padding: 6px 12px; margin-top: 10px; cursor: pointer;">Return to Home</button>
                     `;
                 });
         }
 
-        
         function navigateToPage(title) {
             window.location.hash = encodeURIComponent(title);
         }
 
         function navigateToHome() {
             window.location.hash = '';
-            loadBlog();
+            loadHome();
         }
 
         function handleHashRouting() {
@@ -586,10 +647,10 @@
                 if (secretTriggers.includes(cleanTitle.toLowerCase())) {
                     window.location.href = "bonus.html";
                 } else {
-                    fetchWikipedia(cleanTitle);
+                    fetchPipelineData(cleanTitle);
                 }
             } else {
-                loadBlog();
+                loadHome();
             }
         }
 
@@ -608,6 +669,6 @@
             }
         });
     </script>
-    <footer><center>Made with ♡&☆ by yaboy <a href="https://voblit.vercel.app" target="_blank">Voblit</a>, and YES nolan I DID make this myself 🙄</center></footer>
+    <footer><center>Made with ♡ & ☆ by yaboy <a href="https://voblit.vercel.app" target="_blank" style="color: inherit; text-decoration: underline;">Voblit</a>, and YES nolan I DID make this myself 🙄</center></footer>
 </body>
 </html>
