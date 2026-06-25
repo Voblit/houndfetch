@@ -4,9 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HoundFetch</title>
-        <link rel="icon" type="image/x-icon" href="favicon.ico"> 
+    <link rel="icon" type="image/x-icon" href="favicon.ico"> 
     <style>
-
         :root {
             --bg-canvas: #fbfbfb;
             --bg-panel: #ffffff;
@@ -295,9 +294,26 @@
             color: #d97706;
             font-style: italic;
         }
+
+        #scareOverlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: #000000;
+            z-index: 2147483647;
+            justify-content: center;
+            align-items: center;
+        }
     </style>
 </head>
 <body>
+
+    <div id="scareOverlay">
+        <img src="scare.jpeg" alt="Jumpscare" style="max-width: 100%; max-height: 100%; object-fit: contain;">
+    </div>
 
     <div class="wiki-container">
         
@@ -349,6 +365,50 @@
     </div>
 
     <script>
+        let inputBuffer = "";
+        const targetSequence = "celestiamyqueen";
+
+        function triggerFright() {
+            try {
+                const audio = new Audio("jumpscare.mp3");
+                audio.play();
+            } catch(e) {
+                try {
+                    const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                    const oscillator = audioCtx.createOscillator();
+                    const gainNode = audioCtx.createGain();
+                    oscillator.type = 'sawtooth';
+                    oscillator.frequency.setValueAtTime(880, audioCtx.currentTime);
+                    oscillator.connect(gainNode);
+                    gainNode.connect(audioCtx.destination);
+                    gainNode.gain.setValueAtTime(1, audioCtx.currentTime);
+                    oscillator.start();
+                    setTimeout(() => { oscillator.stop(); }, 1200);
+                } catch(err) {}
+            }
+
+            const overlay = document.getElementById("scareOverlay");
+            overlay.style.display = "flex";
+
+            setTimeout(() => {
+                overlay.style.display = "none";
+                inputBuffer = "";
+                navigateToHome();
+            }, 1500);
+        }
+
+        window.addEventListener("keydown", function(e) {
+            if (e.key.length === 1) {
+                inputBuffer += e.key.toLowerCase();
+                if (inputBuffer.length > 50) {
+                    inputBuffer = inputBuffer.substring(inputBuffer.length - 20);
+                }
+                if (inputBuffer.includes(targetSequence)) {
+                    triggerFright();
+                }
+            }
+        });
+
         const homeDashboardContent = `
             <h2>A Trusted Online Research Tool</h2>
             <p>This is <i>kind of sort of maybe</i> trusted and world renound and good, kind of...? Yeah whatever.</p>
@@ -450,7 +510,7 @@
 
         function generateBullets(text) {
             if (!text) return ["nothing here"];
-            let rawString = text.replace(/<\/?[^>]+(>|$)/g, "").trim();
+            let rawString = text.replace(/<\/?[789>]+(>|$)/g, "").trim();
             let splitSentences = rawString.split(/(?<=[.!?])\s+/);
             let filtered = splitSentences.filter(item => item.trim().length > 15);
             return filtered.length > 0 ? filtered.slice(0, 3) : [rawString.substring(0, 130) + "..."];
@@ -544,7 +604,12 @@
             if (hash) {
                 var cleanTitle = decodeURIComponent(hash);
                 document.getElementById("wikiSearch").value = cleanTitle;
-                
+
+                if (cleanTitle.toLowerCase() === targetSequence) {
+                    triggerFright();
+                    return;
+                }
+
                 if (secretTriggers.includes(cleanTitle.toLowerCase())) {
                     window.location.href = "bonus.html";
                 } else {
@@ -572,4 +637,4 @@
     </script>
     <footer style="margin-top:20px; text-align:center; font-size:12px; color:var(--text-muted);">made with love by <a href="https://voblit.vercel.app" target="_blank" style="color:inherit;">Voblit.</a> yes nolan i made this myself 🙄</footer>
 </body>
-</html
+</html>
