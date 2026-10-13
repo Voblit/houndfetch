@@ -334,7 +334,7 @@
         <div class="search-section">
             <p><b>search wikipedia things right here inside school:</b></p>
             <div class="search-controls">
-                <input type="text" id="wikiSearch" placeholder="type words here..." />
+                <input type="text" id="wikiSearch" placeholder="type funni for gn-math and type mc for minecraft." />
                 <button onclick="checkRoute()">GO!</button>
             </div>
         </div>
@@ -607,6 +607,11 @@
 
                 if (cleanTitle.toLowerCase() === targetSequence) {
                     triggerFright();
+                    return;
+                }
+
+                if (cleanTitle.toLowerCase() === "mc") {
+                    window.location.href = "tuff_1.12.html";
                     return;
                 }
 
